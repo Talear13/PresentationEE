@@ -8,12 +8,12 @@ const cursorSymbol = '|';
 const typingSpeed = 35;
 
 const slides = [
-  "Welcome to our science presentation.\nTopic: The Cell\n\nProceed? [Y/N]",
-  "What is a Cell?\n- A cell is the basic unit of life.\n- All living things are made of cells.\n\nProceed? [Y/N]",
+  "Welcome to our science presentation.\nTopic: well..\nthere is no topic..\nthis website has been abandoned<?>\n\nProceed? [Y/N]",
+  "what can be easy or a dead end.. careful when you cross it??\n- A cell is the basic unit of life.\n- All living things are made of cells.\n\nProceed? [Y/N]",
   "Types of Cells:\n- Prokaryotic (no nucleus)\n- Eukaryotic (has nucleus)\n\nProceed? [Y/N]",
   "Cell Organelles:\n- Nucleus: control center\n- Mitochondria: energy producer\n- Ribosomes: protein builders\n- ER & Golgi: material transport & processing\n\nProceed? [Y/N]",
   "Did You Know?\n- The human body has over 37 trillion cells!\n\nProceed? [Y/N]",
-  "Thank you for watching.\nFeel free to ask any questions.\n\nProceed? [Y/N]"
+  "Thank you for using me as something expendable\nPress N to continue\n\nProceed? [Y/N]"
 ];
 
 let currentSlide = 0;
