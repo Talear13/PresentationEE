@@ -2,9 +2,10 @@ const homeScreen     = document.getElementById('home-screen');
 const terminalScreen = document.getElementById('terminal-screen');
 const terminalOutput = document.getElementById('terminal-output');
 const logo           = document.getElementById('logo');
+const mobileInput    = document.getElementById('mobile-input');
 
 const cursorSymbol = '|';
-const typingSpeed = 35; // consistent speed
+const typingSpeed = 35;
 
 const slides = [
   "Welcome to our science presentation.\nTopic: The Cell\n\nProceed? [Y/N]",
@@ -43,25 +44,29 @@ async function typeText(text, speed = typingSpeed) {
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-// Slide navigation
+// Slide logic
 function waitForYN() {
-  window.addEventListener('keydown', function h(e) {
+  mobileInput.focus(); // force mobile keyboard to show
+
+  function handler(e) {
     const k = e.key.toUpperCase();
     if (k === 'Y' || k === 'N') {
-      window.removeEventListener('keydown', h);
+      window.removeEventListener('keydown', handler);
       removeCursor();
       terminalOutput.textContent += `\n>> ${k}`;
+      mobileInput.blur(); // hide keyboard
       if (k === 'Y') nextSlide();
       else sayGoodbye();
     }
-  });
+  }
+
+  window.addEventListener('keydown', handler);
 }
 
 async function sayGoodbye() {
   await sleep(400);
   await typeText(">> Goodbye.");
   await sleep(1000);
-  terminalScreen.style.transition = "opacity 1.2s ease";
   terminalScreen.style.opacity = 0;
   setTimeout(() => terminalScreen.innerHTML = '', 1200);
 }
