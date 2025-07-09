@@ -63,7 +63,7 @@ function waitForYN() {
       mobileInput.blur();
       removeCursor();
       terminalOutput.textContent += 'Y\n';
-      proceed();
+      runSlides();
     } else if (val === 'N') {
       mobileInput.blur();
       removeCursor();
@@ -74,10 +74,40 @@ function waitForYN() {
   };
 }
 
-async function proceed() {
-  await typeText('\nLoading presentation...');
-  await sleep(800);
-  await typeText('\n>> Slide 1: The Cell\n>> Slide 2: DNA\n>> Slide 3: WOw if ur heRe thAt means IT woRkeD:O');
+const slides = [
+  "Slide 1: What is a Cell?\\n- The basic unit of life\\n- All living things are made of cells",
+  "Slide 2: Types of Cells\\n- Prokaryotic: No nucleus\\n- Eukaryotic: Has nucleus",
+  "Slide 3: Organelles\\n- Nucleus: Brain\\n- Mitochondria: Powerhouse\\n- Ribosomes: Builders",
+  "Slide 4: DNA\\n- Carrier of genetic info\\n- Found in nucleus",
+  "Slide 5: Chromosomes\\n- DNA is packed in chromosomes\\n- Humans have 46 (23 pairs)",
+  "End of presentation. Thank you."
+];
+
+let slideIndex = 0;
+
+async function runSlides() {
+  clearTerminal();
+  await typeText(">> Initializing slideshow...\n");
+  await sleep(500);
+  showNextSlide();
+}
+
+function showNextSlide() {
+  if (slideIndex >= slides.length) return;
+  clearTerminal();
+  typeText(slides[slideIndex] + "\n\n>> Press N for next\n>> Press Q to quit\n>> ");
+  mobileInput.value = '';
+  mobileInput.focus();
+  mobileInput.oninput = () => {
+    const val = mobileInput.value.trim().toUpperCase();
+    if (val === 'N') {
+      slideIndex++;
+      showNextSlide();
+    } else if (val === 'Q') {
+      clearTerminal();
+      typeText('>> Logged out. Session ended.');
+    }
+  };
 }
 
 logo.addEventListener('click', () => {
