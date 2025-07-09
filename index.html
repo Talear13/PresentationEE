@@ -15,14 +15,14 @@
     <div id="terminal-output"></div>
   </div>
 
-  <!-- Hidden input to trigger mobile keyboard -->
+  <!-- Hidden but iOS-compatible input -->
   <input type="text" id="mobile-input"
          inputmode="text"
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
          spellcheck="false"
-         style="position: absolute; opacity: 0; pointer-events: none;">
+         style="position: absolute; width: 1px; height: 1px; opacity: 0.01; border: none; z-index: -1;">
 
   <script src="script.js"></script>
 </body>
