@@ -75,12 +75,23 @@ function waitForYN() {
 }
 
 const slides = [
-  "Slide 1: What is a Cell?\\n- The basic unit of life\\n- All living things are made of cells",
-  "Slide 2: Types of Cells\\n- Prokaryotic: No nucleus\\n- Eukaryotic: Has nucleus",
-  "Slide 3: Organelles\\n- Nucleus: Brain\\n- Mitochondria: Powerhouse\\n- Ribosomes: Builders",
-  "Slide 4: DNA\\n- Carrier of genetic info\\n- Found in nucleus",
-  "Slide 5: Chromosomes\\n- DNA is packed in chromosomes\\n- Humans have 46 (23 pairs)",
-  "End of presentation. Thank you."
+  `Slide 1: What is a Cell?
+- The basic unit of life
+- All living things are made of cells`,
+  `Slide 2: Types of Cells
+- Prokaryotic: No nucleus
+- Eukaryotic: Has nucleus`,
+  `Slide 3: Organelles
+- Nucleus: Brain
+- Mitochondria: Powerhouse
+- Ribosomes: Builders`,
+  `Slide 4: DNA
+- Carrier of genetic info
+- Found in nucleus`,
+  `Slide 5: Chromosomes
+- DNA is packed in chromosomes
+- Humans have 46 (23 pairs)`,
+  `End of presentation. Thank you.`
 ];
 
 let slideIndex = 0;
