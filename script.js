@@ -44,10 +44,15 @@ async function typeText(text, speed = typingSpeed) {
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-// Slide system
+// Slide flow
 function waitForYN() {
   mobileInput.value = '';
   mobileInput.focus();
+
+  // For iOS to scroll and force keyboard
+  setTimeout(() => {
+    mobileInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
 
   function handleInput() {
     const value = mobileInput.value.trim().toUpperCase();
