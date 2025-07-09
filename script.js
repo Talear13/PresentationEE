@@ -51,10 +51,10 @@ async function startSequence() {
   await sleep(500);
   await typeText('\nProceed? [Y/N]\n>> ');
   mobileInput.focus();
-  waitForYN();
+  waitForYN(runSlides);
 }
 
-function waitForYN() {
+function waitForYN(callback) {
   mobileInput.value = '';
   mobileInput.focus();
   mobileInput.oninput = () => {
@@ -63,7 +63,7 @@ function waitForYN() {
       mobileInput.blur();
       removeCursor();
       terminalOutput.textContent += 'Y\n';
-      runSlides();
+      callback();
     } else if (val === 'N') {
       mobileInput.blur();
       removeCursor();
@@ -106,17 +106,17 @@ async function runSlides() {
 function showNextSlide() {
   if (slideIndex >= slides.length) return;
   clearTerminal();
-  typeText(slides[slideIndex] + "\n\n>> Press N for next\n>> Press Q to quit\n>> ");
+  typeText(slides[slideIndex] + "\n\nProceed? [Y/N]\n>> ");
   mobileInput.value = '';
   mobileInput.focus();
   mobileInput.oninput = () => {
     const val = mobileInput.value.trim().toUpperCase();
-    if (val === 'N') {
+    if (val === 'Y') {
       slideIndex++;
       showNextSlide();
-    } else if (val === 'Q') {
+    } else if (val === 'N') {
       clearTerminal();
-      typeText('>> Logged out. Session ended.');
+      typeText('>> Slideshow ended.');
     }
   };
 }
