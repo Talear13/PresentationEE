@@ -18,7 +18,7 @@ const slides = [
 
 let currentSlide = 0;
 
-// Utils
+// Utilities
 function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
@@ -44,23 +44,25 @@ async function typeText(text, speed = typingSpeed) {
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-// Slide logic
+// Slide system
 function waitForYN() {
-  mobileInput.focus(); // force mobile keyboard to show
+  mobileInput.value = '';
+  mobileInput.focus();
 
-  function handler(e) {
-    const k = e.key.toUpperCase();
-    if (k === 'Y' || k === 'N') {
-      window.removeEventListener('keydown', handler);
+  function handleInput() {
+    const value = mobileInput.value.trim().toUpperCase();
+    if (value === 'Y' || value === 'N') {
+      mobileInput.removeEventListener('input', handleInput);
       removeCursor();
-      terminalOutput.textContent += `\n>> ${k}`;
-      mobileInput.blur(); // hide keyboard
-      if (k === 'Y') nextSlide();
+      terminalOutput.textContent += `\n>> ${value}`;
+      mobileInput.blur();
+
+      if (value === 'Y') nextSlide();
       else sayGoodbye();
     }
   }
 
-  window.addEventListener('keydown', handler);
+  mobileInput.addEventListener('input', handleInput);
 }
 
 async function sayGoodbye() {
